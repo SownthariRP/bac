@@ -39,3 +39,41 @@ exports.filterBook = async(req,res) => {
             })
             }
 }
+exports.page = async (req, res) => {
+
+    const category_one = req.query.category_one
+    const category_one_value = req.query.category_one_value
+    const category_two = req.query.category_two
+    const category_two_value = req.query.category_two_value
+    const category_three = req.query.category_three
+    const category_three_value = req.query.category_three_value
+    const conditions = {};
+    if (category_one !== null) {
+        conditions[category_one] = category_one_value;
+    }
+    if (category_two !== null) {
+        conditions[category_two] = category_two_value;
+    }
+    if (category_three !== null) {
+        conditions[category_three] = category_three_value;
+    }
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const startIndex = (page - 1) * limit;
+    // const endIndex = page * limit;
+    const product = await Book.find(conditions).skip(startIndex).limit(limit)
+    if (product.length >= 1) {
+
+        console.log(product)
+        return res.status(200).json({
+            data: product
+
+        })
+    }
+    else {
+        return res.status(200).json({
+            data: []
+
+        })
+    }
+}

@@ -46,6 +46,10 @@ const bookSchema = new mongoose.Schema({
     access_number:{
         type: Number,
         required:true
+    },
+    language:{
+        type: String,
+        required: true
     }
     
 }, {
