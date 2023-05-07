@@ -2,20 +2,12 @@ const mongoose = require('mongoose')
 
 
 const bookSchema = new mongoose.Schema({
-    product_id:{
-        type: String,
-        unique: true,
-        trim: true,
-        required: true
-    },
     title:{
         type: String,
-        trim: true,
         required: true
     },
     author:{
         type: String,
-        trim: true,
         required: true
     },
     publisher:{
@@ -26,10 +18,6 @@ const bookSchema = new mongoose.Schema({
         type: Array,
         required: true,
         default:[]
-    },
-    checked:{
-        type: Boolean,
-        default: false
     },
     availability:{
         type: Number,
@@ -50,6 +38,12 @@ const bookSchema = new mongoose.Schema({
     language:{
         type: String,
         required: true
+    },
+    description:{
+        type: String
+    },
+    image:{
+        type: String
     }
     
 }, {
@@ -57,4 +51,4 @@ const bookSchema = new mongoose.Schema({
 })
 
 
-module.exports = mongoose.model("Books", bookSchema)
+module.exports = mongoose.model("books", bookSchema)

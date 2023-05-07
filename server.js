@@ -21,7 +21,7 @@ const corsOpts = {
   
   app.use(cors(corsOpts));
 
-app.post('/api/search',createBook)
+app.post('/create',createBook)
 app.post('/search',filterBook)
 app.get('/pages',page)
 
