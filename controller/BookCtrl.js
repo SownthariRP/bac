@@ -62,7 +62,7 @@ exports.page = async (req, res) => {
     const limit = parseInt(req.query.limit) || 1;
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
-    console.log(conditions, "conditions page")
+    //console.log(conditions, "conditions page")
     const product = (await Book.find(conditions)).slice(startIndex, endIndex)
     if (product.length >= 1) {
 
