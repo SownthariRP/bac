@@ -59,14 +59,13 @@ exports.page = async (req, res) => {
         conditions[category_three] = category_three_value;
     }
     const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
+    const limit = parseInt(req.query.limit) || 1;
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
     console.log(conditions, "conditions page")
     const product = (await Book.find(conditions)).slice(startIndex, endIndex)
     if (product.length >= 1) {
 
-        console.log("in if part", product)
         return res.status(200).json({
             data: product
 
@@ -74,7 +73,6 @@ exports.page = async (req, res) => {
     }
     else {
 
-        console.log("in else part", product)
         return res.status(200).json({
             data: []
 
